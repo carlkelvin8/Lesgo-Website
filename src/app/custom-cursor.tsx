@@ -16,8 +16,8 @@ export default function CustomCursor() {
       const isInteractive =
         target.tagName === "A" ||
         target.tagName === "BUTTON" ||
-        target.closest("a") ||
-        target.closest("button") ||
+        !!target.closest("a") ||
+        !!target.closest("button") ||
         target.classList.contains("cursor-pointer");
 
       setIsHovering(isInteractive);
