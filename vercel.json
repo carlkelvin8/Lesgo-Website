@@ -3,7 +3,6 @@
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "framework": "nextjs",
-  "nodeVersion": "20.x",
   "env": {
     "NEXT_PUBLIC_APP_URL": {
       "description": "The public URL of the application",
@@ -32,7 +31,5 @@
         }
       ]
     }
-  ],
-  "redirects": [],
-  "rewrites": []
+  ]
 }
