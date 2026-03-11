@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+:root {
+  --background: #120321;
+  --foreground: #f7f4ff;
+  --brand-950: #1b052f;
+  --brand-900: #22083b;
+  --brand-800: #2f0b52;
+  --brand-700: #3b0f67;
+  --brand-600: #4a137f;
+  --brand-500: #5b18a0;
+  --brand-400: #7a3fd4;
+  --brand-300: #a07bf0;
+  --brand-200: #cbb6ff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-outfit);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-outfit), system-ui, -apple-system, Segoe UI, Roboto,
+    Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+:focus-visible {
+  outline: 2px solid rgba(203, 182, 255, 0.7);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: rgba(122, 63, 212, 0.35);
+}
+
+@keyframes floaty {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.floaty {
+  animation: floaty 6s ease-in-out infinite;
+}
