@@ -8,6 +8,7 @@ interface Popup {
   id: string;
   title: string;
   description: string;
+  promoStrip?: string;
   icon: React.ComponentType<{ className?: string }>;
   cta: string;
   ctaLink: string;
@@ -21,11 +22,12 @@ const popups: Popup[] = [
     id: "welcome",
     title: "Welcome to LeSgo! 🎉",
     description: "Get 30% off your first delivery. Use code: WELCOME30",
+    promoStrip: "🎁 Get FREE DELIVERY on your first booking *WELCOMELESGO",
     icon: Gift,
     cta: "Claim Offer",
     ctaLink: "#download",
     delay: 3000,
-    color: "purple",
+    color: "orange",
     position: "bottom-left",
   },
   {
@@ -43,6 +45,7 @@ const popups: Popup[] = [
     id: "community",
     title: "👥🌟 Join Our Community",
     description: "Be part of the fastest growing courier network. Become a LeSgo partner today.",
+    promoStrip: "📣 Reach more customers for your business! Join the LeSgo Partner Club",
     icon: Users,
     cta: "Join Now",
     ctaLink: "#",
@@ -54,11 +57,12 @@ const popups: Popup[] = [
     id: "rider",
     title: "Become a Rider",
     description: "Earn ₱15-25 per delivery. Join 5,000+ riders today!",
+    promoStrip: "⚡ Highest profit sharing in the Philippines — earn up to ₱2,500/day!",
     icon: Zap,
     cta: "Apply Now",
     ctaLink: "#",
     delay: 25000,
-    color: "pink",
+    color: "orange",
     position: "bottom-left",
   },
 ];
@@ -68,17 +72,29 @@ export default function MarketingPopups() {
   const [closedPopups, setClosedPopups] = useState<Set<string>>(new Set());
 
   useEffect(() => {
+    // Version-based reset: if version changed, clear old popup keys
+    const POPUP_VERSION = "v2";
+    if (sessionStorage.getItem("popup_version") !== POPUP_VERSION) {
+      popups.forEach((p) => sessionStorage.removeItem(`popup_shown_${p.id}`));
+      sessionStorage.removeItem("popupBannerClosed");
+      sessionStorage.setItem("popup_version", POPUP_VERSION);
+    }
+
+    const timers: ReturnType<typeof setTimeout>[] = [];
+
     popups.forEach((popup) => {
       const timer = setTimeout(() => {
-        if (!closedPopups.has(popup.id)) {
-          setVisiblePopups((prev) => new Set(prev).add(popup.id));
-        }
+        // Check inside the timer so it re-evaluates at show time
+        if (sessionStorage.getItem(`popup_shown_${popup.id}`)) return;
+        setVisiblePopups((prev) => new Set(prev).add(popup.id));
+        sessionStorage.setItem(`popup_shown_${popup.id}`, "true");
       }, popup.delay);
 
-      return () => clearTimeout(timer);
+      timers.push(timer);
     });
-  }, [closedPopups]);
 
+    return () => timers.forEach(clearTimeout);
+  }, []);
   const closePopup = (id: string) => {
     setVisiblePopups((prev) => {
       const newSet = new Set(prev);
@@ -195,6 +211,12 @@ export default function MarketingPopups() {
 
                 {/* Content */}
                 <div className="relative p-6 sm:p-8">
+                  {/* Promo Strip */}
+                  {popup.promoStrip && (
+                    <div className={`-mx-6 sm:-mx-8 -mt-6 sm:-mt-8 mb-5 px-4 py-2 bg-gradient-to-r ${colors.gradient} text-center`}>
+                      <p className="text-xs font-bold text-white leading-snug">{popup.promoStrip}</p>
+                    </div>
+                  )}
                   {/* Close Button */}
                   <motion.button
                     onClick={() => closePopup(popup.id)}
@@ -202,7 +224,7 @@ export default function MarketingPopups() {
                     whileTap={{ scale: 0.95 }}
                     className="absolute top-4 right-4 p-2 rounded-lg hover:bg-white/10 transition-colors"
                   >
-                    <X className="h-5 w-5 text-white/60 hover:text-white" />
+                    <X className="h-5 w-5 text-white hover:text-white" />
                   </motion.button>
 
                   {/* Icon */}
@@ -230,7 +252,7 @@ export default function MarketingPopups() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
-                    className={`${isCenter ? "text-white/70" : "text-white/65"} ${
+                    className={`${isCenter ? "text-white" : "text-white"} ${
                       isCenter ? "mb-8" : "mb-6"
                     } leading-relaxed ${isCenter ? "text-base" : "text-sm"}`}
                   >
@@ -248,11 +270,7 @@ export default function MarketingPopups() {
                       href={popup.ctaLink}
                       whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.95 }}
-                      className={`${isCenter ? "flex-1" : "w-full"} px-4 py-2 rounded-lg bg-gradient-to-r ${colors.gradient} font-bold text-center hover:shadow-lg ${colors.glow} transition-all`}
-                      style={{ 
-                        color: "#000000 !important",
-                        textShadow: "0 1px 2px rgba(0,0,0,0.1)"
-                      } as any}
+                      className={`${isCenter ? "flex-1" : "w-full"} px-4 py-2 rounded-lg bg-gradient-to-r ${colors.gradient} font-bold text-center text-white hover:shadow-lg ${colors.glow} transition-all`}
                     >
                       {popup.cta}
                     </motion.a>
@@ -273,7 +291,7 @@ export default function MarketingPopups() {
                   <motion.div
                     initial={{ width: "100%" }}
                     animate={{ width: "0%" }}
-                    transition={{ duration: 8 }}
+                    transition={{ duration: 15 }}
                     onAnimationComplete={() => closePopup(popup.id)}
                     className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r ${colors.gradient}`}
                   />
@@ -286,3 +304,4 @@ export default function MarketingPopups() {
     </div>
   );
 }
+

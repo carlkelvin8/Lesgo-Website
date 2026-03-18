@@ -8,6 +8,7 @@ import CustomCursor from "./custom-cursor";
 import AIChatbot from "./ai-chatbot";
 import MarketingPopups from "./marketing-popups";
 import TopBanner from "./top-banner";
+import { ThemeProvider } from "./theme-provider";
 
 
 const outfit = Outfit({
@@ -101,14 +102,16 @@ export default function RootLayout({
       <body
         className={`${outfit.variable} ${geistMono.variable} antialiased`}
       >
-        <CustomCursor />
-        <ProgressBar />
-        <TopBanner />
-        <Navbar />
-        <PopupBanner />
-        <MarketingPopups />
-        <AIChatbot />
-        {children}
+        <ThemeProvider>
+          <CustomCursor />
+          <ProgressBar />
+          <TopBanner />
+          <Navbar />
+          <PopupBanner />
+          <MarketingPopups />
+          <AIChatbot />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
