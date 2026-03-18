@@ -420,13 +420,13 @@ export default function Home() {
                 {/* App download buttons */}
                 <div className="flex gap-3 pt-2">
                   <motion.a href="#download" whileHover={{ scale: 1.03, y: -1 }} whileTap={{ scale: 0.97 }}
-                    className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-full border text-sm font-bold uppercase tracking-widest transition-all hover:shadow-md" style={{ borderColor: "var(--card-border)", color: "var(--text-primary)", background: "var(--input-bg)" }}
-                    style={{ textShadow: "0 0 8px rgba(255,255,255,0.4)" }}>
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-full border text-sm font-bold uppercase tracking-widest transition-all hover:shadow-md"
+                    style={{ borderColor: "var(--card-border)", color: "var(--text-primary)", background: "var(--input-bg)" }}>
                     <Smartphone className="h-4 w-4" /> Merchant App
                   </motion.a>
                   <motion.a href="#download" whileHover={{ scale: 1.03, y: -1 }} whileTap={{ scale: 0.97 }}
-                    className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-full border text-sm font-bold uppercase tracking-widest transition-all hover:shadow-md" style={{ borderColor: "var(--card-border)", color: "var(--text-primary)", background: "var(--input-bg)" }}
-                    style={{ textShadow: "0 0 8px rgba(255,255,255,0.4)" }}>
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-full border text-sm font-bold uppercase tracking-widest transition-all hover:shadow-md"
+                    style={{ borderColor: "var(--card-border)", color: "var(--text-primary)", background: "var(--input-bg)" }}>
                     <Bike className="h-4 w-4" /> Rider App
                   </motion.a>
                 </div>
