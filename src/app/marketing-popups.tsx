@@ -21,8 +21,7 @@ const popups: Popup[] = [
   {
     id: "welcome",
     title: "Welcome to LeSgo! 🎉",
-    description: "Get 30% off your first delivery. Use code: WELCOME30",
-    promoStrip: "🎁 Get FREE DELIVERY on your first booking *WELCOMELESGO",
+    description: "Get FREE DELIVERY on your first booking *WELCOMELESGO",
     icon: Gift,
     cta: "Claim Offer",
     ctaLink: "#download",
