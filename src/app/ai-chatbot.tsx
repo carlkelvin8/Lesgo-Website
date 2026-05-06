@@ -260,7 +260,7 @@ export default function AIChatbot() {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}
-            className="fixed bottom-24 right-6 z-40 w-3 h-3 rounded-full bg-red-500 shadow-lg shadow-red-500/50"
+            className="fixed bottom-[70px] right-[22px] z-40 w-3 h-3 rounded-full bg-red-500 shadow-lg shadow-red-500/50"
           />
         )}
       </AnimatePresence>

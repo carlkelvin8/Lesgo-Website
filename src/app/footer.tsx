@@ -16,7 +16,7 @@ export default function Footer() {
       {/* Google Map Section */}
       <div className="relative w-full h-[450px] mb-16">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30516.08861831!2d121.0847!3d18.6069!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3386d1c8f8f8f8f8%3A0x1234567890abcdef!2sClaveria%2C%20Cagayan!5e0!3m2!1sen!2sph!4v1234567890123!5m2!1sen!2sph"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3781.807994918404!2d121.0561122180858!3d18.58269308853468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3388dd006375fe19%3A0x3f4dd9b4bc7e73fa!2sLeSgo%20Courier%20Services!5e0!3m2!1sen!2sph!4v1778038883949!5m2!1sen!2sph"
           width="100%"
           height="100%"
           style={{ border: 0 }}
@@ -24,17 +24,16 @@ export default function Footer() {
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
           title="LeSgo Office Location - Claveria, Cagayan Valley"
-          className="brightness-90 contrast-110 saturate-50 hover:saturate-100 transition-all duration-500"
         ></iframe>
         {/* Map Overlay with Location Info */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-[#5C1F68] to-[#8b3fa8] backdrop-blur-lg rounded-2xl p-6 shadow-2xl max-w-md w-full mx-4">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
-              <MapPin className="h-6 w-6 text-white" />
+        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-[#5C1F68] to-[#8b3fa8] backdrop-blur-lg rounded-2xl p-4 sm:p-6 shadow-2xl max-w-sm sm:max-w-md w-[90%] sm:w-full mx-auto">
+          <div className="flex items-center gap-3 sm:gap-4">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
+              <MapPin className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
             </div>
             <div>
-              <h4 className="font-bold text-white text-lg">Visit Our Office</h4>
-              <p className="text-white/90 text-sm">Claveria, Cagayan Valley, Philippines</p>
+              <h4 className="font-bold text-white text-base sm:text-lg">Visit Our Office</h4>
+              <p className="text-white/90 text-xs sm:text-sm">Claveria, Cagayan Valley, Philippines</p>
             </div>
           </div>
         </div>
@@ -51,7 +50,7 @@ export default function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <div className="relative h-16 w-40 mb-6">
+              <div className="relative h-40 w-96 mb-6">
                 <Image src="/logo.png" alt="LeSgo" fill className="object-contain brightness-0 invert" />
               </div>
               <p className="text-gray-400 mb-6 leading-relaxed max-w-md">

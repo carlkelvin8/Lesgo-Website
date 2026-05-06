@@ -143,7 +143,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="text-center p-8 rounded-2xl hover:shadow-xl transition-shadow"
+                className="text-center p-8 rounded-2xl"
               >
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-[#e054f1]/10 rounded-full mb-6">
                   <feature.icon className="h-8 w-8 text-[#e054f1]" />
